@@ -1,0 +1,110 @@
+.field {
+  display: block;
+
+  &__fieldset {
+    margin: 0;
+    padding: 0;
+    border: 0;
+  }
+
+  &__title {
+    display: block;
+    margin-bottom: 12px;
+    color: @black;
+    font-size: 14px;
+    font-weight: 700;
+  }
+
+  &__label {
+    display: block;
+    margin-bottom: 0;
+    color: @black;
+    font-family: @font1;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 22px;
+    letter-spacing: 0;
+    text-align: left;
+  }
+
+  &__input-label {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  &__input {
+    box-sizing: border-box;
+    width: 100%;
+    min-height: 50px;
+    padding: 12px 14px;
+    border: 1px solid @black_20;
+    background: @white;
+    color: @black;
+    font-size: 14px;
+    line-height: 1.2;
+  }
+
+  &__input--textarea {
+    min-height: 110px;
+  }
+
+  &__select {
+    width: 100%;
+  }
+
+  &__radio {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 10px;
+  }
+
+  &__check {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+  }
+
+  &__date {
+    position: relative;
+    display: inline-flex;
+    width: 100%;
+  }
+
+  &__date-inputs {
+    display: flex;
+    gap: 10px;
+    width: 100%;
+  }
+
+  &__date-input {
+    box-sizing: border-box;
+    width: 48px;
+    height: 40px;
+    border: 1px solid @black_20;
+    background: @white;
+    text-align: center;
+    font-size: 14px;
+    line-height: 1.2;
+  }
+
+  &__date-input--year {
+    width: 70px;
+  }
+
+  &__date-picker {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    cursor: pointer;
+  }
+}
+
+.field-title {
+  font-family: @font1;
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}

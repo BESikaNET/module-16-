@@ -1,15 +1,22 @@
 <template>
   <header class="page-header">
     <div class="page-header__container">
-      <a href="#" class="page-header__logo">
-        <SvgIcon class="page-header__logo-icon" name="logo" />
-      </a>
+      <NuxtLink to="/" class="page-header__logo">
+        <SvgIcon
+          class="page-header__logo-icon"
+          name="logo"
+          width="202"
+          height="147"
+        />
+      </NuxtLink>
 
       <nav
         class="page-header__nav"
         :class="{ 'page-header__nav--active': navActive }"
       >
-        <a href="#" class="page-header__nav-link">Мероприятия</a>
+        <NuxtLink to="/events" class="page-header__nav-link">
+          Мероприятия
+        </NuxtLink>
         <a href="#" class="page-header__nav-link">Блог</a>
         <a href="#" class="page-header__nav-link">О нас</a>
         <a href="#" class="page-header__nav-link">Контакты</a>
@@ -52,15 +59,11 @@ const toggleNav = () => {
   top: 0;
   left: 0;
   width: 100%;
-  height: 147px;
+  height: 111px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   z-index: 100;
-
-  @media @bw1660 {
-    height: 111px;
-  }
 
   @media @bw768 {
     height: 70px;
@@ -91,18 +94,15 @@ const toggleNav = () => {
   &__logo {
     position: relative;
     flex-shrink: 0;
-    width: 202px;
-    height: 147px;
+    width: 152px;
+    height: 111px;
     font-size: 0;
     text-decoration: none;
+    line-height: 0;
     z-index: 1;
-    @media @bw1660 {
-      width: 152px;
-      height: 111px;
-    }
     @media @bw768 {
       width: 96px;
-      height: 70px;
+      height: auto;
     }
   }
   &__logo-icon {
@@ -111,6 +111,10 @@ const toggleNav = () => {
     max-width: 100%;
     max-height: 100%;
     display: block;
+    @media @bw768 {
+      height: auto;
+      max-height: 70px;
+    }
   }
   &__nav {
     box-sizing: border-box;
@@ -149,6 +153,9 @@ const toggleNav = () => {
   &__nav-link {
     color: @black;
     text-decoration: none;
+    &.router-link-active {
+      color: @red_dark;
+    }
     &:active {
       color: @red_dark;
     }

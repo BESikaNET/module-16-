@@ -2,13 +2,21 @@
   <div class="app">
     <PageHeader class="app__header" />
 
-    <main class="app__main"></main>
+    <main class="app__main">
+      <NuxtPage />
+    </main>
 
     <PageFooter class="app__footer" />
   </div>
 </template>
 
 <script setup>
+import faviconIco from "~/assets/favicons/favicon.ico";
+import favicon32 from "~/assets/favicons/favicon-32x32.png";
+import favicon16 from "~/assets/favicons/favicon-16x16.png";
+import favicon96 from "~/assets/favicons/favicon-96x96.png";
+import appleTouchIcon from "~/assets/favicons/apple-icon-180x180.png";
+
 const store = useStore();
 
 useHead({
@@ -18,14 +26,23 @@ useHead({
   bodyAttrs: {
     class: {
       "overflow-nav": () => store.navActive,
+      overflow: () => store.getModal,
     },
   },
-  title: "Lenni Art",
+  title: "LENNI ART",
   meta: [
+    {
+      name: "application-name",
+      content: "LENNI ART",
+    },
+    {
+      name: "apple-mobile-web-app-title",
+      content: "LENNI ART",
+    },
     {
       name: "og:title",
       property: "og:title",
-      content: "Lenni Art",
+      content: "LENNI ART",
     },
     {
       name: "description",
@@ -40,7 +57,7 @@ useHead({
     {
       name: "og:site_name",
       property: "og:site_name",
-      content: "Lenni Art",
+      content: "LENNI ART",
     },
     { name: "theme-color", content: "#dedede" },
   ],
@@ -56,19 +73,30 @@ useHead({
     {
       rel: "shortcut icon",
       type: "image/vnd.microsoft.icon",
-      href: "/favicons/favicon.ico?v=1",
+      href: `${faviconIco}?v=1`,
     },
     {
       rel: "icon",
       type: "image/png",
-      href: "/favicons/favicon-32x32.png",
+      href: favicon32,
       sizes: "32x32",
     },
     {
       rel: "icon",
       type: "image/png",
-      href: "/favicons/favicon-16x16.png",
+      href: favicon16,
       sizes: "16x16",
+    },
+    {
+      rel: "icon",
+      type: "image/png",
+      href: favicon96,
+      sizes: "96x96",
+    },
+    {
+      rel: "apple-touch-icon",
+      href: appleTouchIcon,
+      sizes: "180x180",
     },
   ],
 });

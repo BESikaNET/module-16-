@@ -1,0 +1,585 @@
+.event {
+  padding: 40px 0 150px;
+
+  &__header {
+    .container();
+    margin-bottom: 60px;
+    text-align: center;
+  }
+
+  &__title {
+    margin: 0 0 40px;
+    font-family: @font2;
+    font-weight: 500;
+    font-size: 44px;
+    line-height: 1.15;
+  }
+
+  &__about {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 60px;
+    @media @bw1020 {
+      flex-direction: column;
+    }
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    min-width: 260px;
+    text-align: left;
+    position: relative;
+    padding: 18px 0;
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background-color: rgba(28, 27, 27, 1);
+    }
+    &::before {
+      top: 0;
+    }
+    &::after {
+      bottom: 0;
+    }
+  }
+
+  &__time {
+    font-family: @font3;
+    font-weight: 300;
+    font-size: 30px;
+    line-height: 36px;
+    text-transform: none;
+    margin-bottom: 6px;
+  }
+
+  &__time-line {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  &__caption {
+    font-family: @font3;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 19px;
+    text-transform: none;
+    color: @black;
+  }
+
+  &__info-text {
+    font-family: @font3;
+    font-weight: 700;
+    font-size: 16px;
+    letter-spacing: 0;
+    line-height: 19px;
+    text-transform: none;
+  }
+
+  &__about {
+    .event__info:first-child {
+      align-items: flex-end;
+      text-align: right;
+      .event__time,
+      .event__time-line {
+        align-self: flex-end;
+        text-align: right;
+      }
+      &::before,
+      &::after {
+        background: linear-gradient(
+          90deg,
+          rgba(255, 255, 255, 0) 0%,
+          rgba(28, 27, 27, 1) 100%
+        );
+      }
+    }
+
+    .event__info:last-child {
+      align-items: flex-start;
+      text-align: left;
+      .event__time,
+      .event__time-line {
+        align-self: flex-start;
+        text-align: left;
+      }
+      .event__info-text {
+        align-self: flex-start;
+      }
+      &::before,
+      &::after {
+        background: linear-gradient(
+          90deg,
+          rgba(28, 27, 27, 1) 0%,
+          rgba(255, 255, 255, 0) 100%
+        );
+      }
+    }
+  }
+
+  &__picture {
+    width: 100%;
+    max-width: 420px;
+    position: relative;
+    overflow: hidden;
+    font-size: 0;
+    &::after {
+      content: "";
+      display: block;
+      width: 100%;
+      padding-top: 70%;
+    }
+  }
+
+  &__image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  &__container {
+    .container();
+  }
+
+  &__content {
+    max-width: 830px;
+    margin: 0;
+    width: 100%;
+  }
+
+  /* Reservation sidebar */
+  &__reservation {
+    .container();
+    margin: 40px auto 0;
+    width: 100%;
+  }
+  .event__reservation-layout {
+    display: flex;
+    align-items: flex-start;
+    gap: 40px;
+    @media @bw1020 {
+      flex-direction: column;
+    }
+  }
+
+  .event__reservation-inner {
+    width: 400px;
+    max-width: 100%;
+  }
+  .event__reservation-map {
+    flex: 1 1 auto;
+    max-width: 780px;
+    margin-left: auto; /* push map to the far right */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* center stage label above svg */
+  }
+
+  .event__reservation-map svg {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .event__reservation-title {
+    font-family: @font1;
+    font-weight: 700;
+    font-size: 18px;
+    margin-bottom: 33px;
+  }
+
+  .event__tables {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 20px 0;
+  }
+
+  .event__table-item {
+    margin-bottom: 10px;
+  }
+
+  .table-label {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    font-family: 'Open Sans', @font1;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 22px;
+    letter-spacing: 0;
+    color: @black;
+    position: relative;
+  }
+
+  /* visually-hide native checkbox but keep it accessible */
+  .table-label input[type="checkbox"] {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 18px;
+    height: 18px;
+    opacity: 0;
+    margin: 0;
+    z-index: 2;
+    cursor: pointer;
+  }
+
+  .table-square {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    height: 18px;
+    margin-right: 10px;
+    border: 2px solid rgba(31, 30, 30, 1);
+    border-radius: 3px;
+    box-sizing: border-box;
+    background: transparent;
+    flex: 0 0 18px;
+  }
+
+  /* color the outline before checking according to price */
+  .table-label.price--red .table-square { border-color: rgba(188, 51, 36, 1); }
+  .table-label.price--black .table-square { border-color: rgba(31, 30, 30, 1); }
+  /* make label text match the checkbox color */
+  .table-label.price--red .table-name { color: rgba(188, 51, 36, 1); }
+  .table-label.price--black .table-name { color: rgba(31, 30, 30, 1); }
+
+  /* checked state: fill square and show white check */
+  .table-label input[type="checkbox"]:checked + .table-square::after {
+    content: "✓";
+    color: #fff;
+    font-size: 12px;
+    line-height: 1;
+    font-weight: 700;
+  }
+
+  .table-label.price--red input[type="checkbox"]:checked + .table-square {
+    background: rgba(188, 51, 36, 1);
+    border-color: rgba(188, 51, 36, 1);
+  }
+
+  .table-label.price--black input[type="checkbox"]:checked + .table-square {
+    background: rgba(31, 30, 30, 1);
+    border-color: rgba(31, 30, 30, 1);
+  }
+
+  /* disabled / unavailable: use requested gray */
+  .table-label input[type="checkbox"]:disabled + .table-square {
+    background: transparent;
+    border-color: rgba(160, 160, 160, 1);
+  }
+
+  /* also set the label text color when disabled */
+  .table-label input[type="checkbox"]:disabled + .table-square + .table-name {
+    color: rgba(160, 160, 160, 1);
+  }
+
+  .table-label--table5 .table-name {
+    color: rgb(96, 96, 96);
+    font-weight: 700;
+    opacity: 1;
+  }
+
+  .table-label--table5 .table-square {
+    border-color: rgba(96, 96, 96, 1);
+  }
+  .table-map {
+    color: rgba(31, 30, 30, 1);
+  }
+
+  .table-map.price--red {
+    color: rgba(188, 51, 36, 1);
+  }
+
+  .table-map.price--black {
+    color: rgba(31, 30, 30, 1);
+  }
+
+  .table-map__shape {
+    fill: transparent;
+    stroke: currentColor;
+  }
+
+  .event__stage-label {
+    width: 162px;
+    height: 40px;
+    background: #000;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center; /* center text horizontally */
+    box-sizing: border-box;
+    font-family: 'Open Sans', @font1;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 22px;
+    letter-spacing: 0;
+    margin-bottom: 8px;
+    text-align: center;
+  }
+
+  .event__legend {
+    display: flex;
+    flex-direction: column; /* stack vertically */
+    gap: 16px;
+    margin-top: 55px;
+    width: 100%;
+    align-items: flex-end; /* keep legend right-aligned */
+    padding-right: 0;
+    box-sizing: border-box;
+    
+  }
+
+  .legend-title {
+    font-family: @font1;
+    font-weight: 700;
+    font-size: 16px;
+    margin: 0 0 12px 0;
+    text-align: right;
+  }
+
+  .legend-prices ul,
+  .legend-notes ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .legend-prices,
+  .legend-notes {
+    align-self: flex-end; /* pin blocks to the right edge */
+  }
+
+  .legend-prices li,
+  .legend-notes li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+    justify-content: flex-end; /* align contents to the right edge */
+    width: 100%;
+  }
+
+  .legend-swatch {
+    width: 18px;
+    height: 18px;
+    display: inline-block;
+    border-radius: 3px;
+    order: 2; /* place swatch at the far right */
+    margin-left: 8px;
+  }
+
+  .swatch-red { background: rgba(188, 51, 36, 1); }
+  .swatch-black { background: rgba(31, 30, 30, 1); }
+
+  .legend-dot { width: 34px; height: 18px; display:inline-block; position: relative; }
+  /* two adjacent rings side-by-side: left red, right black */
+  .legend-dot.available {
+    background: transparent;
+  }
+  .legend-dot.available::before,
+  .legend-dot.available::after {
+    content: "";
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    box-sizing: border-box;
+  }
+  .legend-dot.available::before {
+    left: 0;
+    border: 2px solid rgba(188,51,36,1);
+  }
+  .legend-dot.available::after {
+    left: 18px;
+    border: 2px solid rgba(31,30,30,1);
+  }
+  .legend-dot.reserved {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: rgba(160,160,160,1);
+    left: 0;
+  }
+
+  .legend-text { color: rgba(31,30,30,1); font-family: @font1; }
+
+  /* Typography and right alignment for legend labels */
+  .legend-text {
+    font-family: 'Open Sans', @font1;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 19px;
+    letter-spacing: 0;
+    text-align: right;
+    order: 1; /* ensure text sits to the left of the swatch */
+    width: auto;
+  }
+
+  .table-map__label {
+    fill: currentColor;
+  }
+
+  .table-map--active .table-map__shape {
+    fill: currentColor;
+  }
+
+  .table-map--active .table-map__label {
+    fill: #fff;
+  }
+
+  .table-map--disabled {
+    color: rgba(160, 160, 160, 1);
+  }
+
+  .table-map--disabled .table-map__shape {
+    fill: rgba(160, 160, 160, 1);
+    stroke: rgba(160, 160, 160, 1);
+  }
+
+  .table-map--disabled .table-map__label {
+    fill: rgba(160, 160, 160, 1);
+  }
+
+  .table-map--disabled.table-map--table5 .table-map__label {
+    fill: rgba(31, 30, 30, 1);
+  }
+
+  .table-name {
+    position: relative;
+    font-family: 'Open Sans', @font1;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 22px;
+    letter-spacing: 0;
+    text-align: left;
+  }
+
+  .event__selection {
+    margin-top: 123px;
+  }
+
+  .event__selection h4 { margin: 18px 0 8px; font-weight:700; }
+
+  .event__selection .ticket-summary { list-style: none; padding: 0; margin: 0 0 12px; }
+
+  .event__selection .ticket-summary li { display:flex; justify-content:space-between; margin-bottom:8px; }
+
+  .event__sum {
+    display: flex;
+    justify-content: center;
+    gap: 18px;
+    margin: 12px 0 18px;
+    font-size: 16px;
+  }
+
+  .btn--red { display:block; width:100%; padding:12px 16px; background: rgba(188, 51, 36, 1); color:#fff; border:none; cursor:pointer; }
+
+  /* Disabled table style */
+  .event__table-item input[disabled] + .table-square + .table-name {
+    opacity: 0.4;
+  }
+
+  @media (max-width: 1020px) {
+    /* keep single-column layout */
+    &__reservation { margin-top: 24px; }
+  }
+
+  &__album-title {
+    margin: 70px 0 20px;
+    font-family: @font1;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 25px;
+    letter-spacing: 0;
+    text-align: center;
+  }
+
+  /* Ensure paragraph and list text inside event content matches spec */
+  .event__content .content,
+  .event__content .content p,
+  .event__content .content ol,
+  .event__content .content ul,
+  .event__content .content li {
+    font-family: @font1;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 22px;
+    letter-spacing: 0;
+    color: rgba(31, 30, 30, 1);
+    text-align: left;
+  }
+
+  /* Slight left padding for ordered lists so numbers align visually */
+  .event__content .content ol {
+    padding-left: 24px;
+  }
+
+  .event__content .content ol > li::before {
+    min-width: 28px;
+    display: inline-block;
+    text-align: right;
+    margin-right: 8px;
+  }
+
+  /* Ensure album title stays centered even when parent text is left-aligned */
+  /* Target the album title when `content` and `event__content` are the same element */
+  .content.event__content > .event__album-title,
+  .event__content > .event__album-title,
+  .event__album-title {
+    text-align: left !important;
+    display: block;
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  &__reserve {
+    margin-top: 60px;
+    max-width: 830px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+  }
+}
+
+.title {
+  font-family: @font3;
+  font-weight: 700;
+  font-size: 44px;
+  line-height: 1.1;
+  text-align: center;
+  text-transform: uppercase;
+  @media @bw1340 {
+    font-size: 36px;
+  }
+  @media @bw768 {
+    font-size: 28px;
+  }
+}
+
+/* Specific override for event page title: Lora 70/90 centered */
+.event__title.title {
+  font-family: @font2;
+  font-weight: 500;
+  font-size: 70px;
+  line-height: 90px;
+  letter-spacing: 0;
+  text-align: center;
+  text-transform: none;
+}

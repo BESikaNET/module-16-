@@ -1,0 +1,29 @@
+.more-btn {
+  align-items: center;
+  gap: 10px;
+  padding: 0;
+  border: none;
+  background: none;
+  color: @black;
+  font-family: @font1;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 1.375;
+  text-decoration: none;
+  transition: color 0.2s;
+
+  &:hover {
+    @media (hover: hover) {
+      color: @red;
+    }
+  }
+
+  &:active {
+    color: @red;
+  }
+}
+
+.more-btn__arrow {
+  width: 62px;
+  height: 92px;
+}

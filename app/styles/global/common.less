@@ -88,3 +88,12 @@ button {
 * {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
+
+/* When modal is active (body.overflow), blur main app content */
+body.overflow .app__header,
+body.overflow .app__main,
+body.overflow .app__footer {
+  filter: blur(6px);
+  transition: filter 0.2s ease;
+  pointer-events: none;
+}

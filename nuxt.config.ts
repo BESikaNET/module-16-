@@ -17,6 +17,15 @@ export default defineNuxtConfig({
         },
       },
     },
-    plugins: [svgLoader()],
+    plugins: [
+      svgLoader(),
+      {
+        name: "encode-html-urls",
+        transformIndexHtml: (html) =>
+          html.replace(/(href|src)="([^"]+)"/g, (match, attribute, url) => {
+            return `${attribute}="${encodeURI(url)}"`;
+          }),
+      },
+    ],
   },
 });

@@ -15,6 +15,21 @@
   }
 }
 
+/* At very large screens remove default left/right container paddings
+   so sections stretch full width as requested */
+@media (min-width: 1920px) {
+  .container {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  /* Also clear section paddings if any were applied directly */
+  section {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
 .width_624 {
   box-sizing: border-box;
   width: 100%;
